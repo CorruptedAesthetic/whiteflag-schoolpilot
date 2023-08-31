@@ -8,18 +8,18 @@ module "gce-container" {
 }
 
 resource "google_storage_bucket_object" "startup" {
-  name   = "fennel-subservice-terraform-start.sh"
+  name   = "fennel-whiteflag-terraform-start.sh"
   bucket = "whiteflag-0-admin"
-  source = "fennel-subservice-terraform-start.sh"
+  source = "fennel-whiteflag-terraform-start.sh"
   content_type = "text/plain"
 }
 
-resource "google_compute_address" "fennel-subservice-ip" {
-  name = "fennel-subservice-ip"
+resource "google_compute_address" "fennel-whiteflag-ip" {
+  name = "fennel-whiteflag-ip"
 }
 
-resource "google_compute_instance" "fennel-subservice" {
-  name         = "fennel-subservice-instance"
+resource "google_compute_instance" "fennel-whiteflag" {
+  name         = "fennel-whiteflag-instance"
   machine_type = "e2-small"
   zone         = "us-east1-b"
   allow_stopping_for_update = true 
@@ -37,12 +37,12 @@ resource "google_compute_instance" "fennel-subservice" {
     network    = "whiteflag-sandbox-vpc"
     subnetwork = "public-subnet"
     access_config {
-      nat_ip = google_compute_address.fennel-subservice-ip.address
+      nat_ip = google_compute_address.fennel-whiteflag-ip.address
     }
   } 
 
  metadata = {
-    startup-script-url = "gs://whiteflag-0-admin/fennel-subservice-terraform-start.sh"
+    startup-script-url = "gs://whiteflag-0-admin/fennel-whiteflag-terraform-start.sh"
     gce-container-declaration = module.gce-container.metadata_value
     google-logging-enabled    = "true"
     google-monitoring-enabled = "true"
@@ -53,8 +53,8 @@ resource "google_compute_instance" "fennel-subservice" {
   }
 }
 
-resource "google_storage_bucket_object" "fennel-subservice-ip" {
-  name   = "fennel-subservice-ip.sh"
+resource "google_storage_bucket_object" "fennel-whiteflag-ip" {
+  name   = "fennel-whiteflag-ip.sh"
   bucket = "whiteflag-0-admin"
-  content = google_compute_address.fennel-subservice-ip.address
+  content = google_compute_address.fennel-whiteflag-ip.address
 }
