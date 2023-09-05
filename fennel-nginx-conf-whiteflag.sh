@@ -4,7 +4,7 @@ map $http_upgrade $connection_upgrade {
 }
 
 upstream websocket {
-    server 127.0.0.1:6060;
+    server 127.0.0.1:3000;
 }
 
 server {

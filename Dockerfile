@@ -2,9 +2,9 @@ FROM node:18
 
 WORKDIR /app
 COPY . .
-RUN npm install -g pm2
+RUN npm install serve -g
 RUN npm ci
 RUN npm run build
 
-EXPOSE 6060
+EXPOSE 3000
 ENV NODE_ENV=production

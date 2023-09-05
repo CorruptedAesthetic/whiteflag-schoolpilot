@@ -10,5 +10,5 @@ sudo systemctl start nginx
 sudo certbot --nginx --non-interactive --agree-tos --email info@fennellabs.com --domains whiteflag.fennellabs.com
 sudo systemctl restart nginx
 gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin us-east1-docker.pkg.dev
-docker run -dt -e NODE_ENV=production -p 6060:6060 --name whiteflag us-east1-docker.pkg.dev/whiteflag-0/fennel-docker-registry/whiteflag:latest
-docker exec whiteflag pm2-runtime /app/build/src/server.js
+docker run -dt -e NODE_ENV=production -p 3000:3000 --name whiteflag us-east1-docker.pkg.dev/whiteflag-0/fennel-docker-registry/whiteflag:latest
+docker exec whiteflag serve -s /app/build
