@@ -112,7 +112,7 @@ function App() {
           />
         ) : (
           <WhiteflagLayout>
-            <BrowserRouter>
+            <BrowserRouter basename="/app">
               <Routes>
                 <Route path="/" element={<SignalsList />} />
                 <Route path="/disclaimer" element={<Disclaimer />} />
