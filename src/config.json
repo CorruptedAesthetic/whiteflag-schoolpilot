@@ -1,4 +1,4 @@
 {
   "appId": "Whiteflag",
-  "baseUrl": "http://tech.fennellabs.com/api"
+  "baseUrl": "http://localhost/api"
 }
