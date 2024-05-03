@@ -1,4 +1,4 @@
 {
   "appId": "Whiteflag",
-  "baseUrl": "http://localhost/api"
+  "baseUrl": "http://localhost:81/api"
 }
